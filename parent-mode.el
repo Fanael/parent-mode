@@ -48,15 +48,14 @@ parent, and so on.
 MODE shall be a symbol.
 FUNC shall be a function taking one argument."
   (funcall func mode)
-  (let ((nextmode (get mode 'derived-mode-parent)))
-    (while nextmode
-      ;; Hande all the modes that use (defalias 'foo-parent-mode (stuff)) as
-      ;; their parent
-      (while (symbolp (symbol-function nextmode))
-        (funcall func nextmode)
-        (setq nextmode (symbol-function nextmode)))
-      (funcall func nextmode)
-      (setq nextmode (get nextmode 'derived-mode-parent)))))
+  (let ((modefunc (symbol-function mode)))
+    (if (symbolp modefunc)
+        ;; Hande all the modes that use (defalias 'foo-parent-mode (stuff)) as
+        ;; their parent
+        (parent-mode-map modefunc func)
+      (let ((parentmode (get mode 'derived-mode-parent)))
+        (when parentmode
+          (parent-mode-map parentmode func))))))
 
 (defun parent-mode-list (mode)
   "Return a list of MODE and all its parent modes.
