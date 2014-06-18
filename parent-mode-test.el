@@ -66,16 +66,6 @@
                    parent-mode-test-3-parent-mode
                    parent-mode-test-3-mode))))
 
-(ert-deftest parent-mode-map-order ()
-  (let ((modes ()))
-    (parent-mode-map 'parent-mode-test-4-mode (lambda (mode) (push mode modes)))
-    (setq modes (nreverse modes))
-    (should (equal modes
-                   '(parent-mode-test-4-mode
-                     parent-mode-test-3-mode
-                     parent-mode-test-3-parent-mode
-                     text-mode)))))
-
 (ert-deftest parent-mode-derived-p-derived ()
   (should (parent-mode-is-derived-p 'parent-mode-test-4-mode 'text-mode)))
 

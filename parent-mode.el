@@ -2,7 +2,7 @@
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode
-;; Version: 1.0
+;; Version: 2.0
 ;; Package-Requires: ((emacs "24"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -39,7 +39,7 @@
 
 ;;; Code:
 
-(defun parent-mode-map (mode func)
+(defun parent-mode--worker (mode func)
   "For MODE and all its parent modes, call FUNC.
 
 FUNC is first called for MODE, then for its parent, then for the parent's
@@ -52,18 +52,18 @@ FUNC shall be a function taking one argument."
     (if (symbolp modefunc)
         ;; Hande all the modes that use (defalias 'foo-parent-mode (stuff)) as
         ;; their parent
-        (parent-mode-map modefunc func)
+        (parent-mode--worker modefunc func)
       (let ((parentmode (get mode 'derived-mode-parent)))
         (when parentmode
-          (parent-mode-map parentmode func))))))
+          (parent-mode--worker parentmode func))))))
 
 (defun parent-mode-list (mode)
   "Return a list of MODE and all its parent modes.
 
 The returned list starts with the parent-most mode and ends with MODE."
   (let ((result ()))
-    (parent-mode-map mode (lambda (mode)
-                            (push mode result)))
+    (parent-mode--worker mode (lambda (mode)
+                                (push mode result)))
     result))
 
 (defun parent-mode-is-derived-p (mode parent)
@@ -71,9 +71,9 @@ The returned list starts with the parent-most mode and ends with MODE."
 
 Both MODE and PARENT shall be symbols."
   (catch 'parent-mode-is-derived-p
-    (parent-mode-map mode (lambda (m)
-                            (when (eq m parent)
-                              (throw 'parent-mode-is-derived-p t))))
+    (parent-mode--worker mode (lambda (m)
+                                (when (eq m parent)
+                                  (throw 'parent-mode-is-derived-p t))))
     nil))
 
 (provide 'parent-mode)
