@@ -1,4 +1,4 @@
-;;; parent-mode-test.el --- parent-mode test suite -*- lexical-binding: t -*-
+;;; parent-mode-test.el --- parent-mode test suite
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode

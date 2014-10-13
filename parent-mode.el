@@ -1,9 +1,8 @@
-;;; parent-mode.el --- get major mode's parent modes  -*- lexical-binding: t -*-
+;;; parent-mode.el --- get major mode's parent modes
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode
-;; Version: 2.0
-;; Package-Requires: ((emacs "24"))
+;; Version: 2.1
 
 ;; This file is NOT part of GNU Emacs.
 
