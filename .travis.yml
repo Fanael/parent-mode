@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get update -y -q
   - sudo apt-get install emacs23-nox emacs24-nox emacs-snapshot-nox
 install:
-  - $EMACS -batch -f batch-byte-compile parent-mode.el
+  - $EMACS -Q -batch --eval '(setq byte-compile-error-on-warn t)' -f batch-byte-compile parent-mode.el
 script:
   - if [ "$EMACS" = "emacs23" ]; then
       curl -O 'https://raw.githubusercontent.com/ohler/ert/c619b56c5bc6a866e33787489545b87d79973205/lisp/emacs-lisp/ert.el';
