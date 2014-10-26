@@ -14,4 +14,4 @@ script:
   - if [ "$EMACS" = "emacs23" ]; then
       curl -O 'https://raw.githubusercontent.com/ohler/ert/c619b56c5bc6a866e33787489545b87d79973205/lisp/emacs-lisp/ert.el';
     fi
-  - $EMACS -batch -l parent-mode-test.el -f ert-run-tests-batch-and-exit
+  - $EMACS -Q -batch -l parent-mode-test.el -f ert-run-tests-batch-and-exit
