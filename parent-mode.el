@@ -2,7 +2,7 @@
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode
-;; Version: 2.1
+;; Version: 2.2
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -45,13 +45,16 @@ MODE shall be a symbol.
 FUNC shall be a function taking one argument."
   (funcall func mode)
   (let ((modefunc (symbol-function mode)))
-    (if (symbolp modefunc)
-        ;; Hande all the modes that use (defalias 'foo-parent-mode (stuff)) as
-        ;; their parent
-        (parent-mode--worker modefunc func)
+    (cond
+     ((null modefunc) nil)
+     ((symbolp modefunc)
+      ;; Hande all the modes that use (defalias 'foo-parent-mode (stuff)) as
+      ;; their parent
+      (parent-mode--worker modefunc func))
+     (t
       (let ((parentmode (get mode 'derived-mode-parent)))
         (when parentmode
-          (parent-mode--worker parentmode func))))))
+          (parent-mode--worker parentmode func)))))))
 
 (defun parent-mode-list (mode)
   "Return a list of MODE and all its parent modes.
