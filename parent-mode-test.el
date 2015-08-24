@@ -70,7 +70,7 @@
   (should-not (parent-mode-is-derived-p 'parent-mode-test-4-mode 'emacs-lisp-mode)))
 
 (ert-deftest parent-mode-gracefully-handles-nonexistent-modes ()
-  (should (equal (parent-mode-list 'nonexistent-mode) '(nonexistent-mode))))
+  (should-error (parent-mode-list 'nonexistent-mode) :type 'void-function))
 
 (provide 'parent-mode-test)
 ;;; parent-mode-test.el ends here
