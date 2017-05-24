@@ -74,5 +74,11 @@ Both MODE and PARENT shall be symbols."
                                   (throw 'parent-mode-is-derived-p t))))
     nil))
 
+(defun parent-mode-display ()
+  "Display this buffer's mode hierarchy."
+  (interactive)
+  (let ((ls (parent-mode-list major-mode)))
+    (princ ls)))
+
 (provide 'parent-mode)
 ;;; parent-mode.el ends here
