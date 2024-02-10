@@ -1,11 +1,11 @@
-;;; parent-mode-test.el --- parent-mode test suite
+;;; parent-mode-test.el --- parent-mode test suite -*- lexical-binding: nil -*-
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode
 
 ;; This file is NOT part of GNU Emacs.
 
-;; Copyright (c) 2014, Fanael Linithien
+;; Copyright (c) 2014-2024, Fanael Linithien
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
