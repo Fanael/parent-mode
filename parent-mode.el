@@ -1,4 +1,4 @@
-;;; parent-mode.el --- get major mode's parent modes
+;;; parent-mode.el --- get major mode's parent modes  -*- lexical-binding: t; -*-
 
 ;; Author: Fanael Linithien <fanael4@gmail.com>
 ;; URL: https://github.com/Fanael/parent-mode
